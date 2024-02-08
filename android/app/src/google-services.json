@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "749045558448",
+    "project_id": "printly-56e53",
+    "storage_bucket": "printly-56e53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749045558448:android:886ee7821f83abb996df75",
+        "android_client_info": {
+          "package_name": "com.example.printly"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCavxJ2icMLYoJZpq1J1wtGr6r0VDI_H6U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
