@@ -2,14 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../prodact_model.dart';
+
 class ProudactDetailes extends StatefulWidget {
-  const ProudactDetailes({super.key});
+
+  final ProductModel product;
+
+  ProudactDetailes({required this.product});
 
   @override
   State<ProudactDetailes> createState() => _ProudactDetailesState();
 }
 
 class _ProudactDetailesState extends State<ProudactDetailes> {
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -45,7 +51,7 @@ class _ProudactDetailesState extends State<ProudactDetailes> {
               height: screenHeight / 2,
               child: Image(
                 fit: BoxFit.fill,
-                image: NetworkImage('assets/images/pen.png'),
+                image:widget.product.image,
               ),
             ),
             Padding(
@@ -61,7 +67,7 @@ class _ProudactDetailesState extends State<ProudactDetailes> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'product name',
+                    widget.product.title,
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
@@ -93,12 +99,11 @@ class _ProudactDetailesState extends State<ProudactDetailes> {
                             child: Text('NofV'),
                           ),
                           Spacer(),
-                          Text('PRICE'),
+                          Text(widget.product.price.toString(),),
                         ],
                       ),
                       SizedBox(height: 16),
-                      Text(
-                        'Starting from 2.00 LYD Excellent quality plastic pen with the ability to print the logo',
+                      Text(widget.product.description,
                         softWrap: true,
                       ),
                       const Divider(

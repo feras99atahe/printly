@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:printly/printly_icon_icons.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:printly/profile/profile_screen.dart';
+
+import '../home_page/home_page_screen.dart';
+
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        bottomNavigationBar: Container(
+    return
+        Container(
           color: Colors.white38,
-          child: const Padding(
+          child:  Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: 15,
                 vertical: 5),
@@ -19,32 +22,43 @@ class NavBar extends StatelessWidget {
               color: Colors.black,
               activeColor: Color(0xFFFEC422),
               tabBackgroundColor: Colors.white38,
-              gap: 8,
-              padding: EdgeInsets.all(16),
+              gap: 2,
+              padding: EdgeInsets.all(8),
 
               tabs: [
                 GButton(
-                  icon: Icons.home,
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Home())); // Navigate to the home page
+                  },
+                  icon: Icons.home_outlined,
                   iconSize: 40,
                   text: 'Home',),
                 GButton(
-                  icon:Printly_icon.brush,
-                  text: 'Draft',
+
+
+                  icon:Icons.draw_outlined,
+                  text: 'Desing',
                   iconSize: 40,),
                 GButton(
-                  icon: Printly_icon.proudact,
+                  onPressed: () {
+                    GoRouter.of(context).go('/all_proudact'); // Navigate to the home page
+                  },
+                  icon: Icons.menu_outlined,
                   text: 'All products',
                   iconSize: 40,),
                 GButton(
-                  icon: Icons.person,
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => Profile()));
+                    // Navigate to the home page
+                  },
+                  icon: Icons.person_outline,
                   text: 'Profile',
                   iconSize: 40,),
 
               ],
             ),
           ),
-        ),
-    );
+        );
   }
 }
 
