@@ -33,7 +33,7 @@ class PromotionalGifts extends StatelessWidget {
           'Purbo Plastic Pen', 'Starting from 2.00 LYD Excellent quality plastic pen with the ability to print the logo', 2),
       new ProductModel(
           AssetImage('assets/images/mug.jpg'),
-          'Mug', 'description', 15),];
+          'Mug', '', 15),];
 
 
     double screenWidth = MediaQuery.of(context).size.width;
@@ -57,7 +57,9 @@ class PromotionalGifts extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         icon: const Icon(
                           Icons.arrow_back_ios,
                         ),

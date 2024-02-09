@@ -42,7 +42,9 @@ class PapersPrints extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         icon: const Icon(
                           Icons.arrow_back_ios,
                         ),
@@ -78,13 +80,18 @@ class PapersPrints extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Positioned(
+                 Positioned(
                   top: 0,
                   left: 0,
                   child: Padding(
                     padding: EdgeInsets.all(16.0),
-                    child: Icon(
-                      Icons.arrow_back_ios,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                      ),
                     ),
                   ),
                 ),

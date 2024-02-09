@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:printly/desgin/desgin_screen.dart';
 
 import '../prodact_model.dart';
 
@@ -104,18 +105,20 @@ class _ProudactDetailesState extends State<ProudactDetailes> {
                       ),
                       SizedBox(height: 16),
                       Text(widget.product.description,
-                        softWrap: true,
+
                       ),
                       const Divider(
                         indent: 16,
                         endIndent: 16,
                         color: Colors.black,
                       ),
-                      Row(
-                        children: [
-                          Text('Colors'),
-                          CircleSelectionDemo(),
-                        ],
+                      SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                          child: Row(children:[
+                            Text('Colors'),
+                            CircleSelectionDemo(),
+                          ],
+                          ),
                       ),
                       const Divider(
                         indent: 16,
@@ -136,14 +139,19 @@ class _ProudactDetailesState extends State<ProudactDetailes> {
                         endIndent: 16,
                         color: Colors.black,
                       ),
-                      Container(
-                        height: 30,
-                        width: 100,
-                        decoration: BoxDecoration(
-                            color: Color(0xFFFCBA03),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Center(
-                          child: Text('Start Design'),
+                      InkWell(
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (con)=> DesginPage()));
+                        },
+                        child: Container(
+                          height: 30,
+                          width: 100,
+                          decoration: BoxDecoration(
+                              color: Color(0xFFFCBA03),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Center(
+                            child: Text('Start Design'),
+                          ),
                         ),
                       )
                     ],
@@ -238,7 +246,7 @@ class QuantitySelectionDemo extends StatefulWidget {
 class _QuantitySelectionDemoState extends State<QuantitySelectionDemo> {
   int selectedIndex = -1;
 
-  List<double> Quantity = [25, 50, 100];
+  List<int> Quantity = [25, 50, 100];
 
   @override
   Widget build(BuildContext context) {
