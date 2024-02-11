@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:printly/login/login_page.dart';
 
 import '../password/PasswordField.dart';
 
@@ -17,8 +18,8 @@ class SignUpScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
         
-            Image(image: const NetworkImage('assets/images/login logo.png'),
-              height:MediaQuery.of(context).size.height/2.5,
+            Image(image: const AssetImage('assets/images/login logo.png'),
+              height:MediaQuery.of(context).size.height/3,
               width: double.infinity,
               fit: BoxFit.fill,),
         
@@ -89,7 +90,11 @@ class SignUpScreen extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () {
-        
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoginScreen(),
+                              ));
                         },
                         child: const Text('Use existing account ',
                           style: TextStyle(

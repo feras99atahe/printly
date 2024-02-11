@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:printly/cart/Cart.dart';
 import 'package:printly/desgin/desgin_screen.dart';
 
 import '../prodact_model.dart';
@@ -35,11 +36,13 @@ class _ProudactDetailesState extends State<ProudactDetailes> {
         title: Text('Prodact Detailes'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios_rounded),
-          onPressed: () {},
+          onPressed: () {            Navigator.pop(context);
+          },
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+            },
             icon: Icon(Icons.favorite_border),
           )
         ],
@@ -139,20 +142,48 @@ class _ProudactDetailesState extends State<ProudactDetailes> {
                         endIndent: 16,
                         color: Colors.black,
                       ),
-                      InkWell(
-                        onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (con)=> DesginPage()));
-                        },
-                        child: Container(
-                          height: 30,
-                          width: 100,
-                          decoration: BoxDecoration(
-                              color: Color(0xFFFCBA03),
-                              borderRadius: BorderRadius.circular(8)),
-                          child: Center(
-                            child: Text('Start Design'),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (con)=> CartScreen()));
+                              },
+                              child: Container(
+                                height: 30,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                    color: Color(0xFFFCBA03),
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: Center(
+                                  child: Text('Add To Cart'),
+                                ),
+                              ),
+                            ),
                           ),
-                        ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: (){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (con)=> DesginPage()));
+                              },
+                              child: Container(
+                                height: 30,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                    color: Colors.black45,
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: Center(
+                                  child: Text('Start Design',style: TextStyle(
+                                    color: Colors.white
+                                  ),),
+                                ),
+                              ),
+                            ),
+                          ),
+
+                        ],
                       )
                     ],
                   ),

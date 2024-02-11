@@ -25,6 +25,15 @@ class PapersPrints extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Papers Prints'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios_rounded),
+          onPressed: () {            Navigator.pop(context);
+          },
+        ),
+      ),
       body: ListView(
         shrinkWrap: true,
         children: [
@@ -33,32 +42,32 @@ class PapersPrints extends StatelessWidget {
             width: 200,
             child: Stack(
               children: [
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: SizedBox(
-                    height: 10,
-                    width: 20,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(
-                          Icons.arrow_back_ios,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Positioned(
+                //   top: 0,
+                //   left: 0,
+                //   child: SizedBox(
+                //     height: 10,
+                //     width: 20,
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(16.0),
+                //       child: IconButton(
+                //         onPressed: () {
+                //           Navigator.pop(context);
+                //         },
+                //         icon: const Icon(
+                //           Icons.arrow_back_ios,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 Positioned(
                   top: 0,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(20)),
                     child: Image.asset(
-                      'assets/images/all_proudat_image_background.png',
+                      'assets/images/paper.png',
                       width: screenWidth,
                       height: screenHeight / 4,
                       fit: BoxFit.cover,
@@ -80,34 +89,7 @@ class PapersPrints extends StatelessWidget {
                     ),
                   ),
                 ),
-                 Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_ios,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 0,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(20)),
-                    child: Image.asset(
-                      'assets/images/all_proudat_image_background.png',
-                      width: screenWidth,
-                      height: screenHeight / 4,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+
                 Positioned(
                   right: 10,
                   top: screenHeight / 10,
@@ -132,80 +114,86 @@ class PapersPrints extends StatelessWidget {
           ),
           GridView.builder(
             shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            primary: false,
+            physics: ScrollPhysics(),
+            primary: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 8.0,
-              crossAxisSpacing: 8.0,
-            ),
-            padding: const EdgeInsets.all(8.0),
+                crossAxisCount: 2,
+                mainAxisSpacing: 8.0,
+                crossAxisSpacing: 8.0,
+                childAspectRatio: 0.6),
+            // padding: const EdgeInsets.all(8.0),
             itemCount: products.length,
             itemBuilder: (context, index) {
-              return InkWell(
-                onTap: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>  ProudactDetailes(product: products[index])
+              return Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color(0xFFFCBA03),
+                ),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ProudactDetailes(product: products[index])),
+                    );
+                  },
+                  child: SizedBox(
+                    height: 100,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height:
+                            MediaQuery.of(context).size.height / 3.75,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  image: products[index].image,
+                                  fit: BoxFit.cover),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.5),
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 5),
+                                ),
+                                const BoxShadow(
+                                  color: Color(0xFFFCBA03),
+                                  offset: Offset(-5, 0),
+                                ),
+                                const BoxShadow(
+                                  color: Color(0xFFFCBA03),
+                                  offset: Offset(5, 0),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Text(
+                            products[index].title,
+                            style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Text(
+                            '${products[index].price} LD',
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color(0xFFFCBA03),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          height: screenWidth / 3.5,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            image:  DecorationImage(
-                                image: products[index].image,
-                                fit: BoxFit.cover),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(0.5),
-                                blurRadius: 7,
-                                offset: const Offset(0, 5),
-                              ),
-                              const BoxShadow(
-                                color: Color(0xFFFCBA03),
-                                offset: Offset(-5, 0),
-                              ),
-                              const BoxShadow(
-                                color: Color(0xFFFCBA03),
-                                offset: Offset(5, 0),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(2.0),
-                        child: Text(
-                          products[index].title,
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(2.0),
-                        child: Text(
-                          '${products[index].price} LD',
-                          style: TextStyle(
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                 ),
               );

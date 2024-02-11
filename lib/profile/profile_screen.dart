@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:printly/login/login_page.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -16,14 +17,7 @@ class Profile extends StatelessWidget {
           title: Text('Profile'),
           centerTitle: true,
           backgroundColor: Colors.transparent,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios,
-            ),
-          ),
+
         ),
         body: SingleChildScrollView(
           child: Center(
@@ -43,7 +37,7 @@ class Profile extends StatelessWidget {
                           height: screenHeight / 2,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100),
-                            child: Image.network(
+                            child: Image.asset(
                               'assets/images/profile.png',
                               width: screenWidth / 3,
                               height: screenHeight / 3,
@@ -240,6 +234,13 @@ class Profile extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
+                    onTap: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginScreen(),
+                          ));
+                    },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

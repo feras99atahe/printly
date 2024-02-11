@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../prodact_model.dart';
+import '../proudact_details/proudact_detailes_screen.dart';
+
 class AllProudact extends StatelessWidget {
   const AllProudact({Key? key}) : super(key: key);
 
@@ -7,8 +10,56 @@ class AllProudact extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-
+    late List<ProductModel> products = [
+      new ProductModel(
+          AssetImage('assets/images/A5leather_notebook.jpg'),
+          'A5 Leather Notebook',
+          'Starting from 25.00 LYD A5 size leather diary available in several colors with the ability to print a colorful logo',
+          25),
+      new ProductModel(
+          AssetImage('assets/images/A6notebooks.jpg'),
+          'A6 Leather Notebooks',
+          'Starting from 15.00 LYD Leather diary, size 9 x 14, available in several colors, with the possibility of printing the logo in color',
+          15),
+      new ProductModel(
+          AssetImage('assets/images/alfa_metel_pen.jpg'),
+          'Alfa Metel Pen',
+          'Starting from 2.00 LYD Excellent quality metel pen with the ability to print the logo with laser engraving',
+          2),
+      new ProductModel(
+          AssetImage('assets/images/alfa_plastic_pen.jpg'),
+          'Alfa Plastic Pen',
+          'Starting from 2.00 LYD Excellent quality plastic pen with the ability to print the logo',
+          2),
+      new ProductModel(
+          AssetImage('assets/images/round_plastic_pen.png'),
+          'Round Plastic Pen',
+          'Starting from 2.00 LYD Excellent quality plastic pen with the ability to print the logo',
+          2.50),
+      new ProductModel(
+          AssetImage('assets/images/turbo_plastic_pen.png'),
+          'Purbo Plastic Pen',
+          'Starting from 2.00 LYD Excellent quality plastic pen with the ability to print the logo',
+          2),
+      new ProductModel(AssetImage('assets/images/mug.jpg'), 'Mug', '', 15),
+      new ProductModel(
+          AssetImage('assets/images/personal_card.jpg'),
+          'Personal Card',
+          'Starting from 0.35 LYD Print personal cards, size 9 x 5 cm',
+          0.35),
+      new ProductModel(
+          AssetImage('assets/images/stationery.jpg'),
+          'Correspondence',
+          'Starting from 0.70 LYD Printing corporate correspondence paper with the ability to choose the paper material',
+          0.50),
+      new ProductModel(
+          AssetImage('assets/images/stiker.jpg'),
+          'StikerS',
+          'Starting from 0.50 LYDPrint circular labels to enhance your brand',
+          0.70),
+    ];
     return Scaffold(
+
       body: ListView(
         shrinkWrap: true,
         children: [
@@ -17,32 +68,32 @@ class AllProudact extends StatelessWidget {
             width: 200,
             child: Stack(
               children: [
-                Positioned(
-                  top: 0,
-                  left: 0,
-                  child: SizedBox(
-                    height: 10,
-                    width: 20,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(
-                          Icons.arrow_back_ios,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Positioned(
+                //   top: 0,
+                //   left: 0,
+                //   child: SizedBox(
+                //     height: 10,
+                //     width: 20,
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(16.0),
+                //       child: IconButton(
+                //         onPressed: () {
+                //           Navigator.pop(context);
+                //         },
+                //         icon: const Icon(
+                //           Icons.arrow_back_ios,
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 Positioned(
                   top: 0,
                   child: ClipRRect(
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(20)),
                     child: Image.asset(
-                      'assets/images/all_proudat_image_background.png',
+                      'assets/images/paper.png',
                       width: screenWidth,
                       height: screenHeight / 4,
                       fit: BoxFit.cover,
@@ -64,34 +115,7 @@ class AllProudact extends StatelessWidget {
                     ),
                   ),
                 ),
-                 Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 0,
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(20)),
-                    child: Image.asset(
-                      'assets/images/all_proudat_image_background.png',
-                      width: screenWidth,
-                      height: screenHeight / 4,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
+
                 Positioned(
                   right: 10,
                   top: screenHeight / 10,
@@ -116,72 +140,87 @@ class AllProudact extends StatelessWidget {
           ),
           GridView.builder(
             shrinkWrap: true,
-            physics: const ClampingScrollPhysics(),
-            primary: false,
+            physics: ScrollPhysics(),
+            primary: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 8.0,
-              crossAxisSpacing: 8.0,
-            ),
-            padding: const EdgeInsets.all(8.0),
-            itemCount: 20,
+                crossAxisCount: 2,
+                mainAxisSpacing: 8.0,
+                crossAxisSpacing: 8.0,
+                childAspectRatio: 0.6),
+            // padding: const EdgeInsets.all(8.0),
+            itemCount: products.length,
             itemBuilder: (context, index) {
               return Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: const Color(0xFFFCBA03),
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: screenWidth / 3.5,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: const DecorationImage(
-                              image: NetworkImage(
-                                  'assets/images/all_proudat_image_background.png'),
-                              fit: BoxFit.fill),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.5),
-                              blurRadius: 7,
-                              offset: const Offset(0, 5),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ProudactDetailes(product: products[index])),
+                    );
+                  },
+                  child: SizedBox(
+                    height: 100,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height:
+                            MediaQuery.of(context).size.height / 3.75,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              image: DecorationImage(
+                                  image: products[index].image,
+                                  fit: BoxFit.cover),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.5),
+                                  blurRadius: 7,
+                                  offset: const Offset(0, 5),
+                                ),
+                                const BoxShadow(
+                                  color: Color(0xFFFCBA03),
+                                  offset: Offset(-5, 0),
+                                ),
+                                const BoxShadow(
+                                  color: Color(0xFFFCBA03),
+                                  offset: Offset(5, 0),
+                                ),
+                              ],
                             ),
-                            const BoxShadow(
-                              color: Color(0xFFFCBA03),
-                              offset: Offset(-5, 0),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Text(
+                            products[index].title,
+                            style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
                             ),
-                            const BoxShadow(
-                              color: Color(0xFFFCBA03),
-                              offset: Offset(5, 0),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Text(
+                            '${products[index].price} LD',
+                            style: TextStyle(
+                              fontSize: 14,
                             ),
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(2.0),
-                      child: Text(
-                        'data',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(2.0),
-                      child: Text(
-                        'data',
-                        style: TextStyle(
-                          fontSize: 14,
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               );
             },
